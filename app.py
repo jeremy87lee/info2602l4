@@ -181,6 +181,13 @@ def delete_todo_action(id):
     flash('Todo Deleted')
   return redirect(url_for('todos_page'))
 
+@app.route('/logout', methods=['GET'])
+@jwt_required()
+def logout_action():
+  flash('Logged Out')
+  response = redirect(url_for('login_page'))
+  unset_jwt_cookies(response)
+  return response
 
 
 
